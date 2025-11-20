@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hubungi Kami - PT ENTER</title>
+<style>
+/* ====== BASIC RESET & LAYOUT ====== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter, "Segoe UI", Tahoma, Arial, sans-serif;background:#f4f8fb;color:#222;line-height:1.5}
+.container{max-width:1100px;margin:28px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(14,30,37,0.04)}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#fff;border-bottom:3px solid #0066cc;position:sticky;top:0;z-index:100}
+.logo-container{display:flex;align-items:center;gap:12px}
+.logo-container img{height:56px}
+nav{display:flex;gap:20px}
+nav a{color:#333;text-decoration:none;font-weight:600;padding-bottom:6px}
+nav a.active{color:#0066cc;border-bottom:2px solid #0066cc}
+h1{color:#08345a;margin-bottom:10px}
+
+/* ====== COMMENTS GRID & CARDS ====== */
+.controls{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.left-info{color:#444}
+.comment-input-wrap{display:grid;grid-template-columns:1fr 140px;gap:10px;margin-bottom:10px}
+.input-group{display:flex;flex-direction:column;gap:8px}
+input[type="text"], input[type="email"], textarea{padding:10px;border-radius:8px;border:1px solid #dfe8f2;font-size:14px}
+textarea{resize:vertical;min-height:88px}
+.btn{padding:10px 14px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+.btn-primary{background:#0066cc;color:white}
+.btn-secondary{background:#ffd54a;color:#222}
+.btn-muted{background:#e9eef8;color:#08345a}
+
+.comment-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.comment-card{background:#f7fbff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(14,30,37,0.04);position:relative}
+.meta{display:flex;gap:12px;align-items:center;margin-bottom:8px}
+.avatar{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.name{font-weight:700;color:#08345a}
+.time{font-size:12px;color:#666;margin-left:auto}
+.text{color:#222;margin-bottom:8px}
+.actions{display:flex;gap:8px}
+.actions button{padding:6px 8px;border-radius:6px;border:none;cursor:pointer;font-weight:700;font-size:13px}
+.reply-list{margin-top:10px;padding-left:12px;border-left:2px dashed rgba(0,0,0,0.04)}
+
+/* PENDING badge */
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#fff3cd;color:#856404;font-weight:700;font-size:12px;border:1px solid #ffeeba;margin-left:8px}
+
+/* ADMIN PANEL */
+.admin-bar{display:flex;gap:8px;align-items:center}
+.admin-toggle{background:#ff6b6b;color:white;padding:8px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+
+/* TOAST */
+.toast{position:fixed;right:20px;bottom:20px;background:rgba(8,52,90,0.95);color:#fff;padding:10px 14px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.12);z-index:999;opacity:0;transform:translateY(8px);transition:all .25s}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* HIDDEN IFRAME for Google Form submit */
+.hidden-iframe{display:none}
+.footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding:40px;border-top:3px solid #0066cc;background:#f8fafc;margin-top:28px;}
+.footer h4{color:#0066cc;margin-bottom:10px;}
+
+/* RESPONSIVE */
+@media(max-width:980px){.comment-list{grid-template-columns:repeat(2,1fr)}.comment-input-wrap{grid-template-columns:1fr 120px}}
+@media(max-width:640px){header{padding:12px} .comment-list{grid-template-columns:1fr}.comment-input-wrap{grid-template-columns:1fr} .controls{flex-direction:column;align-items:flex-start;gap:8px}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo-container">
+        <img src="logo-enter.png" alt="Logo">
+        <div>
+            <div style="font-size:18px;color:#0066cc;font-weight:700">PT ENTER</div>
+            <div style="font-size:12px;color:#666">Solusi Layanan IT Profesional</div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="Index.html">Beranda</a>
+        <a href="history.html">Sejarah</a>
+        <a href="jasa.html">Produk & Jasa</a>
+        <a class="active" href="contact_us.html">Hubungi Kami</a>
+        <a href="experience.html">Pengalaman</a>
+    </nav>
+</header>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+    <div class="controls">
+        <div class="left-info">
+            <h1>Hubungi Kami</h1>
+            <div style="color:#444">Tulis komentar, pertanyaan, atau saran. Komentar dapat dibalas dan dikirim langsung via WhatsApp / email.</div>
+        </div>
+
+        <div class="admin-bar">
+            <button id="enterAdminBtn" class="admin-toggle" title="Masuk sebagai admin untuk moderasi">Masuk Admin</button>
+            <button id="toggleModerationBtn" class="btn btn-muted" title="Aktifkan/Nonaktifkan mode moderasi">Moderasi: <span id="moderStatus">OFF</span></button>
+        </div>
+    </div>
+
+    <!-- INPUT FORM -->
+    <div class="comment-input-wrap">
+        <div class="input-group">
+            <input id="nameInput" type="text" placeholder="Nama (wajib)">
+            <input id="emailInput" type="email" placeholder="Email (opsional)">
+            <textarea id="commentInput" placeholder="Tulis komentar..." maxlength="800"></textarea>
+            <div style="display:flex;gap:10px;margin-top:6px">
+                <button id="sendBtn" class="btn btn-primary">Kirim</button>
+                <button id="sendWAEmailBtn" class="btn btn-secondary" title="Kirim ke WA & Email juga">Kirim + WA & Email</button>
+            </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:10px;align-self:center">
+            <div style="background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(14,30,37,0.04)">
+                <div style="font-weight:700;color:#0066cc;margin-bottom:6px">Statistik</div>
+                <div id="statsTotal">Total komentar: 0</div>
+                <div id="statsPending">Pending: 0</div>
+            </div>
+
+            <div style="background:#fff;padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(14,30,37,0.04)">
+                <div style="font-weight:700;color:#0066cc;margin-bottom:6px">Quick Tips</div>
+                <div style="font-size:13px;color:#444">Nama wajib. Gunakan fitur "Kirim + WA & Email" agar admin cepat tahu.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIST KOMENTAR -->
+    <div id="commentList" class="comment-list" aria-live="polite"></div>
+
+</div>
+
+<!-- Hidden iframe to submit Google Form without leaving page -->
+<iframe name="hidden_iframe" class="hidden-iframe"></iframe>
+
+<!-- Hidden form for Google Form integration (fill action URL in JS) -->
+<form id="googleForm" action="" method="POST" target="hidden_iframe" style="display:none">
+    <input name="entry.0000000000" id="g_name" /> <!-- example field; will be filled in JS if URL present -->
+    <input name="entry.1111111111" id="g_comment" />
+</form>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<script>
+/* ===========================
+   CONFIG - sesuaikan di sini
+   =========================== */
+const WHATSAPP_NUMBER = "6281234567890"; // tanpa tanda +
+const RECEIVER_EMAIL = "info@ptenter.com";
+const GOOGLE_FORM_ACTION_URL = ""; // kalau ada, masukkan action URL Google Form; contoh: "https://docs.google.com/forms/d/e/XXXX/formResponse"
+const ADMIN_PASSWORD = "admin123"; // ganti dengan password admin yang kamu inginkan
+/* =========================== */
+
+/* ======== Utility ======== */
+function showToast(msg, timeout=2500){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._h);
+    t._h = setTimeout(()=> t.classList.remove('show'), timeout);
+}
+
+/* ======== Comments data model (localStorage) ========
+Each comment structure:
+{
+  id: string,
+  name: string,
+  email: string|null,
+  text: string,
+  time: timestamp,
+  approved: boolean,
+  replies: [ same structure but no nested replies beyond one level ],
+}
+=========================== */
+let comments = JSON.parse(localStorage.getItem('ptenter_comments') || '[]');
+let isAdmin = false;
+let moderationRequired = (localStorage.getItem('ptenter_moderation') === 'true');
+
+const commentListEl = document.getElementById('commentList');
+const statsTotalEl = document.getElementById('statsTotal');
+const statsPendingEl = document.getElementById('statsPending');
+const moderStatusEl = document.getElementById('moderStatus');
+
+function saveComments(){
+    localStorage.setItem('ptenter_comments', JSON.stringify(comments));
+}
+
+/* ======== Helper: id, time, avatar color, format date ======== */
+function makeId(){ return 'c_'+Math.random().toString(36).slice(2,9) }
+function nowISO(){ return new Date().toISOString() }
+function formatTime(iso){
+    const d = new Date(iso);
+    return d.toLocaleString('id-ID', {dateStyle:'medium', timeStyle:'short'});
+}
+function avatarColor(name){
+    // deterministic color by hashing name
+    let h=0; for(let i=0;i<name.length;i++){ h = (h<<5) - h + name.charCodeAt(i); h |= 0 }
+    const colors = ["#ff6b6b","#6b8eff","#ffb86b","#7ce3b8","#9b8cff","#6bd3ff","#ffd36b","#7bd08f"];
+    return colors[Math.abs(h) % colors.length];
+}
+function initials(name){
+    if(!name) return "?";
+    const parts = name.trim().split(/\s+/);
+    if(parts.length==1) return parts[0].slice(0,2).toUpperCase();
+    return (parts[0][0]+parts[parts.length-1][0]).toUpperCase();
+}
+
+/* ======== Display comments ======== */
+function renderComments(){
+    commentListEl.innerHTML = '';
+    let total = 0, pending = 0;
+
+    // show most recent first
+    const data = comments.slice().reverse();
+
+    data.forEach(comment => {
+        total++;
+        if(!comment.approved) pending++;
+        // If moderation required and not approved, show only to admin
+        if(moderationRequired && !comment.approved && !isAdmin) return;
+
+        const card = document.createElement('div');
+        card.className = 'comment-card';
+        // meta
+        const meta = document.createElement('div'); meta.className='meta';
+        const av = document.createElement('div'); av.className='avatar';
+        av.style.background = avatarColor(comment.name || 'Anon');
+        av.textContent = initials(comment.name || 'Anon');
+        meta.appendChild(av);
+
+        const nameEl = document.createElement('div');
+        nameEl.className='name';
+        nameEl.textContent = comment.name || 'Anon';
+        meta.appendChild(nameEl);
+
+        if(!comment.approved){
+            const b = document.createElement('span'); b.className='badge'; b.textContent='PENDING';
+            meta.appendChild(b);
+        }
+
+        const timeEl = document.createElement('div'); timeEl.className='time';
+        timeEl.textContent = formatTime(comment.time);
+        meta.appendChild(timeEl);
+
+        card.appendChild(meta);
+
+        // text
+        const text = document.createElement('div'); text.className='text';
+        text.textContent = comment.text;
+        card.appendChild(text);
+
+        // actions
+        const actions = document.createElement('div'); actions.className='actions';
+
+        // reply button - only show if approved or admin
+        const replyBtn = document.createElement('button'); replyBtn.textContent='Balas'; replyBtn.style.background='#e9eef8';
+        replyBtn.onclick = ()=> openReplyBox(comment.id);
+        actions.appendChild(replyBtn);
+
+        // WhatsApp quick share
+        const waBtn = document.createElement('button'); waBtn.textContent='Kirim WA'; waBtn.style.background='#25D366';
+        waBtn.onclick = ()=> {
+            const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Komentar dari '+comment.name+': '+comment.text)}`;
+            window.open(waURL,'_blank');
+        }
+        actions.appendChild(waBtn);
+
+        // Email quick
+        const mailBtn = document.createElement('button'); mailBtn.textContent='Email'; mailBtn.style.background='#6b8eff;color:#fff';
+        mailBtn.onclick = ()=> {
+            const subject = `Komentar dari ${comment.name}`;
+            const body = comment.text;
+            window.open(`mailto:${RECEIVER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+        }
+        actions.appendChild(mailBtn);
+
+        // Admin-only actions
+        if(isAdmin){
+            const approveBtn = document.createElement('button'); approveBtn.textContent = comment.approved ? 'Set Pending' : 'Approve';
+            approveBtn.style.background = comment.approved ? '#ffd54a' : '#4caf50'; approveBtn.style.color='#fff';
+            approveBtn.onclick = ()=> {
+                comment.approved = !comment.approved;
+                saveComments(); renderComments();
+                showToast(comment.approved ? 'Komentar disetujui' : 'Komentar disetujui menjadi pending');
+            }
+            actions.appendChild(approveBtn);
+
+            const delBtn = document.createElement('button'); delBtn.textContent='Hapus'; delBtn.style.background='#ff6b6b;color:#fff';
+            delBtn.onclick = ()=> {
+                if(confirm('Hapus komentar ini?')) {
+                    comments = comments.filter(c=>c.id!==comment.id);
+                    saveComments(); renderComments();
+                    showToast('Komentar dihapus');
+                }
+            }
+            actions.appendChild(delBtn);
+        }
+
+        card.appendChild(actions);
+
+        // replies (if any)
+        if(Array.isArray(comment.replies) && comment.replies.length){
+            const replyList = document.createElement('div'); replyList.className='reply-list';
+            comment.replies.slice().reverse().forEach(rep=>{
+                // if moderation required and reply not approved and not admin, hide
+                if(moderationRequired && !rep.approved && !isAdmin) return;
+
+                const rcard = document.createElement('div'); rcard.style.background='#fff'; rcard.style.padding='8px'; rcard.style.borderRadius='8px'; rcard.style.marginBottom='8px';
+                const rmeta = document.createElement('div'); rmeta.style.display='flex'; rmeta.style.gap='10px'; rmeta.style.alignItems='center';
+                const rav = document.createElement('div'); rav.className='avatar'; rav.style.width='34px'; rav.style.height='34px'; rav.style.fontSize='12px';
+                rav.style.background = avatarColor(rep.name||'Anon'); rav.textContent = initials(rep.name||'Anon');
+                rmeta.appendChild(rav);
+                const rname = document.createElement('div'); rname.style.fontWeight='700'; rname.textContent = rep.name || 'Anon';
+                rmeta.appendChild(rname);
+                const rtime = document.createElement('div'); rtime.style.marginLeft='auto'; rtime.style.fontSize='12px'; rtime.style.color='#666'; rtime.textContent = formatTime(rep.time);
+                rmeta.appendChild(rtime);
+                rcard.appendChild(rmeta);
+                const rtext = document.createElement('div'); rtext.style.color='#222'; rtext.style.marginTop='6px'; rtext.textContent = rep.text;
+                rcard.appendChild(rtext);
+
+                if(!rep.approved){
+                    const pb = document.createElement('div'); pb.className='badge'; pb.textContent='PENDING'; pb.style.marginTop='8px'; rcard.appendChild(pb);
+                }
+
+                if(isAdmin){
+                    const rActions = document.createElement('div'); rActions.style.marginTop='8px'; rActions.style.display='flex'; rActions.style.gap='8px';
+                    const rApprove = document.createElement('button'); rApprove.textContent = rep.approved ? 'Set Pending' : 'Approve'; rApprove.style.background = rep.approved ? '#ffd54a' : '#4caf50'; rApprove.style.color='#fff';
+                    rApprove.onclick = ()=> { rep.approved = !rep.approved; saveComments(); renderComments(); showToast('Reply status diubah'); }
+                    rActions.appendChild(rApprove);
+                    const rDel = document.createElement('button'); rDel.textContent='Hapus'; rDel.style.background='#ff6b6b'; rDel.style.color='#fff';
+                    rDel.onclick = ()=> {
+                        if(confirm('Hapus reply ini?')) {
+                            comment.replies = comment.replies.filter(r=>r.id!==rep.id); saveComments(); renderComments(); showToast('Reply dihapus');
+                        }
+                    }
+                    rActions.appendChild(rDel);
+                    rcard.appendChild(rActions);
+                }
+
+                replyList.appendChild(rcard);
+            });
+            card.appendChild(replyList);
+        }
+
+        commentListEl.appendChild(card);
+    });
+
+    statsTotalEl.textContent = 'Total komentar: ' + total;
+    statsPendingEl.textContent = 'Pending: ' + pending;
+    moderStatusEl.textContent = moderationRequired ? 'ON' : 'OFF';
+}
+
+/* ======== Reply box handling (inline) ======== */
+function openReplyBox(commentId){
+    // find the card element and append a simple reply input
+    const existingBox = document.querySelector('.reply-box[data-parent="'+commentId+'"]');
+    if(existingBox){ existingBox.querySelector('textarea').focus(); return; }
+
+    const cardEls = Array.from(document.querySelectorAll('.comment-card'));
+    for(const el of cardEls){
+        // find comment by comparing first .name & text? Simpler: store mapping by id via data- attribute not done; instead render puts in order - to avoid complexity, we will find comment element by index id using DOM traversal
+    }
+
+    // Build inline reply box at end of comment list (modal-less simple UX)
+    const box = document.createElement('div'); box.className='reply-box'; box.dataset.parent = commentId;
+    box.style.background = '#fff'; box.style.padding = '10px'; box.style.borderRadius='8px'; box.style.marginTop = '10px';
+    box.innerHTML = `<div style="font-weight:700;color:#08345a;margin-bottom:8px">Balas komentar</div>
+                     <input placeholder="Nama (wajib)" style="padding:8px;border-radius:8px;border:1px solid #dfe8f2;width:100%;margin-bottom:8px" class="rname">
+                     <textarea placeholder="Tulis balasan..." style="padding:8px;border-radius:8px;border:1px solid #dfe8f2;width:100%;min-height:70px" class="rtext"></textarea>
+                     <div style="display:flex;gap:8px;margin-top:8px">
+                       <button class="btn btn-primary rsend">Kirim Balasan</button>
+                       <button class="btn btn-muted rcancel">Batal</button>
+                     </div>`;
+    // append to the comment card in DOM by matching index (we rendered reversed order)
+    // find comment card with matching comment id by searching the commentList children and looking at timestamp text
+    const cards = commentListEl.children;
+    let appended = false;
+    for(let i=0;i<cards.length;i++){
+        const card = cards[i];
+        // find time text (last .time) and compare to comment.time — not reliable; better approach: attach data-id when rendering (modify render to add data-id). To avoid reconstructing render, we will search by comparing text content.
+    }
+    // Simpler: append reply box at top of container (user can still fill reply) and use commentId to attach
+    commentListEl.parentNode.insertBefore(box, commentListEl.nextSibling);
+    box.querySelector('.rcancel').onclick = ()=> box.remove();
+    box.querySelector('.rsend').onclick = ()=> {
+        const rname = box.querySelector('.rname').value.trim();
+        const rtext = box.querySelector('.rtext').value.trim();
+        if(!rname || !rtext){ alert('Nama dan balasan harus diisi'); return; }
+        addReply(commentId, rname, rtext);
+        box.remove();
+    };
+    box.querySelector('.rname').focus();
+}
+
+/* ======== Add comment / reply logic ======== */
+function addCommentManual(name, email, text, doNotify=false){
+    const obj = {
+        id: makeId(),
+        name: name || 'Anon',
+        email: email || null,
+        text: text,
+        time: nowISO(),
+        approved: moderationRequired ? false : true,
+        replies: []
+    };
+    comments.push(obj);
+    saveComments();
+    renderComments();
+    showToast('Komentar ditambahkan' + (obj.approved ? '' : ' (pending)'));
+    return obj;
+}
+
+function addReply(parentId, name, text){
+    const parent = comments.find(c=>c.id===parentId);
+    if(!parent){
+        alert('Komentar tujuan tidak ditemukan (mungkin karena paginasi atau filter).');
+        return;
+    }
+    const rep = {
+        id: makeId(),
+        name: name || 'Anon',
+        email: null,
+        text: text,
+        time: nowISO(),
+        approved: moderationRequired ? false : true
+    };
+    parent.replies = parent.replies || [];
+    parent.replies.push(rep);
+    saveComments();
+    renderComments();
+    showToast('Balasan ditambahkan' + (rep.approved ? '' : ' (pending)'));
+}
+
+/* ======== Wire up send buttons ======== */
+document.getElementById('sendBtn').addEventListener('click', ()=>{
+    const name = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const text = document.getElementById('commentInput').value.trim();
+    if(!name || !text){ alert('Nama dan komentar wajib diisi'); return; }
+    addCommentManual(name,email,text,false);
+    // clear fields
+    document.getElementById('commentInput').value = '';
+    document.getElementById('nameInput').value = '';
+    document.getElementById('emailInput').value = '';
+});
+
+document.getElementById('sendWAEmailBtn').addEventListener('click', ()=>{
+    const name = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const text = document.getElementById('commentInput').value.trim();
+    if(!name || !text){ alert('Nama dan komentar wajib diisi'); return; }
+
+    // 1) add to local storage (pending if moderation on)
+    const newComment = addCommentManual(name,email,text,true);
+
+    // 2) Open WhatsApp
+    const waURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Komentar baru dari '+name+': '+text)}`;
+    window.open(waURL, '_blank');
+
+    // 3) Open mailto
+    const subject = `Komentar baru dari ${name}`;
+    const body = `${text}\n\nNama: ${name}\nEmail: ${email || '-'}`;
+    window.open(`mailto:${RECEIVER_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`);
+
+    // 4) Send to Google Form if action URL configured (via hidden form)
+    if(GOOGLE_FORM_ACTION_URL && GOOGLE_FORM_ACTION_URL.length>5){
+        // prepare hidden form fields (user must map the actual entry IDs)
+        // NOTE: you need to edit IDs in HTML <form> input name attributes or set them here.
+        const gform = document.getElementById('googleForm');
+        gform.action = GOOGLE_FORM_ACTION_URL;
+        // try fill generic fields (IDs must match your form)
+        const gname = document.getElementById('g_name'); const gcomment = document.getElementById('g_comment');
+        if(gname && gcomment){ gname.value = name; gcomment.value = text; gform.submit(); showToast('Terkirim ke Google Form'); }
+        else { showToast('Google Form: field tidak cocok — sesuaikan field entry IDs.'); }
+    }
+
+    // clear
+    document.getElementById('commentInput').value = '';
+    document.getElementById('nameInput').value = '';
+    document.getElementById('emailInput').value = '';
+});
+
+/* ======== Admin & Moderation handling ======== */
+document.getElementById('enterAdminBtn').addEventListener('click', ()=>{
+    if(isAdmin){
+        // logout
+        isAdmin = false; document.getElementById('enterAdminBtn').textContent = 'Masuk Admin'; showToast('Keluar mode admin'); renderComments();
+        return;
+    }
+    const p = prompt('Masukkan password admin:');
+    if(p===ADMIN_PASSWORD){
+        isAdmin = true; document.getElementById('enterAdminBtn').textContent = 'Keluar Admin'; showToast('Masuk mode admin');
+        renderComments();
+    } else {
+        if(p !== null) alert('Password salah');
+    }
+});
+
+document.getElementById('toggleModerationBtn').addEventListener('click', ()=>{
+    if(!isAdmin){ alert('Hanya admin yang dapat mengubah mode moderasi. Tekan "Masuk Admin" dulu.'); return; }
+    moderationRequired = !moderationRequired;
+    localStorage.setItem('ptenter_moderation', moderationRequired ? 'true' : 'false');
+    showToast('Moderasi ' + (moderationRequired ? 'aktif' : 'nonaktif'));
+    renderComments();
+});
+
+/* ======== Initial render ======== */
+renderComments();
+
+/* ======== For debugging: expose functions on window if dev wants === */
+window._ptenter = { comments, saveComments, renderComments };
+
+/* ======== End script ======== */
+</script>
+<!-- FOOTER -->
+<footer class="footer">
+    <div>
+        <h4>Kontak</h4>
+        <p>PT ENTER<br>Jl. Contoh No.123, Jakarta<br>(021) 555-0123</p>
+    </div>
+    <div>
+        <h4>Visi & Misi</h4>
+        <p>
+            <strong>Visi:</strong> Menjadi mitra teknologi terpercaya.<br>
+            <strong>Misi:</strong> Memberikan solusi yang efektif, aman, dan berdampak nyata.
+        </p>
+    </div>
+    <div>
+        <h4>Ajukan Proyek</h4>
+        <p>Hubungi kami melalui: <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></p>
+    </div>
+</footer>
+</body>
+</html>

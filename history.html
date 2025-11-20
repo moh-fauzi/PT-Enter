@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sejarah Perusahaan - PT ENTER</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f8fb;color:#222;}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:#fff;border-bottom:3px solid #0066cc;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:100;}
+.logo-container{display:flex;align-items:center;gap:14px;}
+.logo-container img{height:56px;}
+nav{display:flex;gap:30px;}
+nav a{text-decoration:none;color:#333;font-weight:600;padding-bottom:6px;border-bottom:2px solid transparent;}
+nav a:hover, nav a.active{color:#0066cc;border-bottom-color:#0066cc;}
+.container{max-width:1100px;margin:28px auto;padding:22px;background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(14,30,37,0.06);}
+
+.timeline{display:flex;flex-direction:column;gap:18px;padding:8px 6px;}
+.event{display:flex;gap:18px;align-items:flex-start;}
+.event .year{min-width:90px;background:#0066cc;color:white;padding:12px;border-radius:10px;font-weight:700;text-align:center;}
+.event .desc{background:#f7fbff;padding:14px;border-radius:10px;box-shadow:0 4px 16px rgba(2,36,71,0.03);}
+
+.footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding:40px;border-top:3px solid #0066cc;background:#f8fafc;margin-top:28px;}
+.footer h4{color:#0066cc;margin-bottom:10px;}
+
+@media(max-width:720px){
+    .event{flex-direction:column;}
+    .event .year{width:100%;text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo-container">
+        <img src="logo-enter.png">
+        <div>
+            <div style="font-size:20px;font-weight:700;color:#0066cc;">PT ENTER</div>
+            <div style="font-size:13px;color:#666;">Solusi Layanan IT Profesional</div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="Index.html">Beranda</a>
+        <a class="active" href="history.html">Sejarah</a>
+        <a href="jasa.html">Produk & Jasa</a>
+        <a href="contact_us.html">Hubungi Kami</a>
+        <a href="experience.html">Pengalaman</a>
+    </nav>
+</header>
+
+<!-- BODY -->
+<div class="container">
+    <h1 style="color:#08345a;margin-bottom:10px;">Sejarah Singkat PT ENTER</h1>
+
+    <p style="color:#444;margin-bottom:18px;">
+        PT ENTER merupakan perusahaan teknologi informasi yang berdiri dari komitmen untuk membantu bisnis Indonesia
+        memasuki era digital dengan solusi yang praktis, aman, dan efisien. Perjalanan kami dimulai dari skala kecil,
+        namun berkembang pesat melalui dedikasi untuk memberikan layanan berkualitas tinggi.
+    </p>
+
+    <div class="timeline">
+
+        <div class="event">
+            <div class="year">2012</div>
+            <div class="desc">
+                <strong>Pendirian PT ENTER</strong><br>
+                Berdiri dengan fokus awal pada layanan instalasi jaringan dan perbaikan komputer untuk UMKM di Jakarta.
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="year">2015</div>
+            <div class="desc">
+                <strong>Ekspansi Layanan</strong><br>
+                Mulai menyediakan pembuatan website profesional serta sistem POS untuk sektor ritel dan kuliner.
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="year">2018</div>
+            <div class="desc">
+                <strong>Proyek Menengah Pertama</strong><br>
+                Menangani proyek instalasi jaringan skala kampus dan institusi pendidikan dengan cakupan besar.
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="year">2021</div>
+            <div class="desc">
+                <strong>Layanan IoT & Otomasi</strong><br>
+                Memperkenalkan solusi IoT untuk efisiensi operasional klien ritel, manufaktur kecil, dan gudang.
+            </div>
+        </div>
+
+        <div class="event">
+            <div class="year">2024</div>
+            <div class="desc">
+                <strong>Standarisasi Prosedur</strong><br>
+                Mengimplementasikan standar keamanan & dokumentasi profesional untuk mendukung proyek besar.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <h2 style="color:#08345a;margin-bottom:10px;">Nilai & Komitmen</h2>
+    <p style="color:#444;">
+        Kami memprioritaskan integritas, kualitas layanan, serta kolaborasi jangka panjang. Setiap solusi yang kami tawarkan 
+        dirancang untuk memberikan dampak nyata bagi operasional dan pertumbuhan bisnis klien.
+    </p>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div>
+        <h4>Kontak</h4>
+        <p>PT ENTER<br>Jl. Contoh No.123, Jakarta<br>Telp: (021) 555-0123<br>Email: info@ptenter.com</p>
+    </div>
+    <div>
+        <h4>Visi</h4>
+        <p>Menjadi mitra teknologi terpercaya yang membantu bisnis Indonesia bertransformasi digital.</p>
+    </div>
+    <div>
+        <h4>Misi</h4>
+        <p>Menyediakan solusi IT yang aman, handal, dan memberikan nilai jangka panjang bagi pelanggan.</p>
+    </div>
+</footer>
+
+</body>
+</html>
