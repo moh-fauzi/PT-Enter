@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Produk & Jasa - PT ENTER</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f8fb;color:#222;}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:#fff;border-bottom:3px solid #0066cc;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:100;}
+.logo-container{display:flex;align-items:center;gap:14px;}
+.logo-container img{height:56px;}
+nav{display:flex;gap:24px;}
+nav a{text-decoration:none;color:#333;font-weight:600;padding-bottom:6px;border-bottom:2px solid transparent;transition:.2s;}
+nav a:hover, nav a.active{color:#0066cc;border-bottom-color:#0066cc;}
+
+.container{max-width:1200px;margin:28px auto;padding:20px;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.card{background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 20px rgba(14,30,37,0.04);text-align:center;}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:12px;}
+.card h4{color:#0066cc;margin-bottom:6px;}
+.card p{color:#444;font-size:14px;margin-bottom:12px;}
+
+.btn-row{display:flex;gap:10px;justify-content:center;}
+.btn{padding:10px 14px;border-radius:8px;border:none;font-weight:700;cursor:pointer;font-size:13px;}
+.btn-apply{background:#ffd54a;color:#222;}
+.btn-social{background:#e9eef8;color:#08345a;}
+
+.footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding:40px;border-top:3px solid #0066cc;background:#f8fafc;margin-top:28px;}
+.footer h4{color:#0066cc;margin-bottom:8px;}
+
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:560px){.grid{grid-template-columns:1fr;} header{padding:14px;} }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <div class="logo-container">
+        <img src="logo-enter.png" alt="Logo">
+        <div>
+            <div style="font-size:20px;color:#0066cc;font-weight:700;">PT ENTER</div>
+            <div style="font-size:13px;color:#666;">Solusi Layanan IT Profesional</div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="Index.html">Beranda</a>
+        <a href="history.html">Sejarah</a>
+        <a href="jasa.html" class="active">Produk & Jasa</a>
+        <a href="contact_us.html">Hubungi Kami</a>
+        <a href="experience.html">Pengalaman</a>
+    </nav>
+</header>
+
+<!-- BODY -->
+<div class="container">
+    <h1 style="color:#08345a;margin-bottom:10px;">Produk & Jasa Kami</h1>
+    <p style="color:#444;margin-bottom:20px;">
+        Kami menyediakan layanan teknologi informasi yang dirancang untuk mendukung operasional bisnis Anda secara maksimal,
+        mulai dari infrastruktur jaringan, pengembangan aplikasi, hingga dukungan teknis dan sistem otomasi.
+    </p>
+
+    <div class="grid">
+
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="img/produk1.jpg" alt="Instalasi Jaringan">
+            <h4>Instalasi & Perawatan Jaringan</h4>
+            <p>Perancangan LAN/WiFi, pemasangan perangkat jaringan, konfigurasi server & firewall, hingga maintenance rutin.</p>
+            <div class="btn-row">
+                <a class="btn btn-apply" target="_blank" href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20mengajukan%20layanan%20Instalasi%20Jaringan">Ajukan</a>
+                <a class="btn btn-social" href="#">Medsos</a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="img/produk2.jpg" alt="Pembuatan Website">
+            <h4>Pembuatan Website & Aplikasi</h4>
+            <p>Website responsif, dashboard admin, sistem booking, portal pelanggan, hingga aplikasi custom.</p>
+            <div class="btn-row">
+                <a class="btn btn-apply" target="_blank" href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20mengajukan%20Jasa%20Website">Ajukan</a>
+                <a class="btn btn-social" href="#">Medsos</a>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="img/produk3.jpg" alt="POS">
+            <h4>Sistem Kasir (POS)</h4>
+            <p>Solusi kasir modern untuk toko/retail/cafe: laporan penjualan, stok, multi-user, dan integrasi pembayaran.</p>
+            <div class="btn-row">
+                <a class="btn btn-apply" target="_blank" href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20mengajukan%20layanan%20POS">Ajukan</a>
+                <a class="btn btn-social" href="#">Medsos</a>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+            <img src="img/produk4.jpg" alt="IoT">
+            <h4>IoT & Otomasi Sistem</h4>
+            <p>Solusi sistem otomatisasi berbasis sensor: kontrol lampu, pintu, mesin, monitoring suhu, dan lainnya.</p>
+            <div class="btn-row">
+                <a class="btn btn-apply" target="_blank" href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20mengajukan%20layanan%20IoT">Ajukan</a>
+                <a class="btn btn-social" href="#">Medsos</a>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card">
+            <img src="img/produk5.jpg" alt="Perbaikan Komputer">
+            <h4>Service & Perbaikan Komputer</h4>
+            <p>Perbaikan laptop/PC, upgrade hardware, install ulang OS, dan troubleshooting onsite maupun remote.</p>
+            <div class="btn-row">
+                <a class="btn btn-apply" target="_blank" href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20mengajukan%20layanan%20Service%20Komputer">Ajukan</a>
+                <a class="btn btn-social" href="#">Medsos</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div>
+        <h4>Lokasi</h4>
+        <p>PT ENTER<br>Jl. Contoh No.123, Jakarta<br>Telp: (021) 555-0123</p>
+    </div>
+    <div>
+        <h4>Visi & Misi</h4>
+        <p>
+            <strong>Visi:</strong> Menjadi mitra teknologi terpercaya.<br>
+            <strong>Misi:</strong> Memberikan solusi IT aman, handal, dan terjangkau.
+        </p>
+    </div>
+    <div>
+        <h4>Ajukan Sekarang</h4>
+        <p>
+            Hubungi via WhatsApp:<br>
+            <a href="https://wa.me/6281234567890" target="_blank"><strong>+62 812-3456-7890</strong></a>
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT ENTER - Solusi Layanan IT Profesional</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;color:#222;line-height:1.6;background:#f4f8fb;}
+        a{color:inherit;}
+        header{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:#fff;border-bottom:3px solid #0066cc;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:100;}
+        .logo-container{display:flex;align-items:center;gap:14px;}
+        .logo-container img{height:56px;width:auto;}
+        .company-name{font-size:22px;font-weight:700;color:#0066cc;}
+        .tagline{font-size:13px;color:#666;}
+        nav{display:flex;gap:30px;align-items:center;}
+        nav a{text-decoration:none;color:#333;font-size:15px;font-weight:600;padding-bottom:6px;border-bottom:2px solid transparent;transition:.22s;}
+        nav a:hover{color:#0066cc;border-bottom-color:#0066cc;}
+        .hero{background:linear-gradient(135deg,#0066cc 0%,#004a99 100%);padding:80px 48px;display:flex;justify-content:center;align-items:center;gap:48px;color:white;min-height:420px;border-radius:8px;margin:24px;border:0;}
+        .hero-image img{width:260px;height:260px;padding:24px;border-radius:50%;background:rgba(255,255,255,0.06);border:3px solid rgba(255,255,255,0.12);box-shadow:0 10px 28px rgba(0,0,0,0.15);object-fit:contain;}
+        .hero-text h1{font-size:40px;margin-bottom:8px;line-height:1.05;}
+        .hero-text h2{font-size:20px;font-weight:600;margin-bottom:16px;opacity:0.95;}
+        .hero-text p{font-size:15px;opacity:0.95;}
+        .section{max-width:1100px;margin:30px auto;padding:18px;background:white;border-radius:12px;box-shadow:0 8px 20px rgba(14,30,37,0.06);}
+        .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+        .card{padding:18px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(18,52,78,0.04);}
+        .card h3{color:#0066cc;margin-bottom:8px;}
+        footer{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;padding:40px;border-top:3px solid #0066cc;background:#f8fafc;margin-top:30px;}
+        footer h4{color:#0066cc;margin-bottom:10px;}
+        .btn-primary{display:inline-block;padding:10px 16px;background:#ffd54a;border-radius:8px;font-weight:700;border:none;cursor:pointer;text-decoration:none;color:#2c2c2c;margin-top:12px;}
+        @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);} .hero{flex-direction:column;text-align:center;padding:40px;} .hero-image img{width:200px;height:200px} header{padding:16px 20px} .hero-text h1{font-size:32px} }
+        @media(max-width:560px){.grid{grid-template-columns:1fr} .hero-image img{width:160px;height:160px} .hero{padding:28px}}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="logo-enter.png" alt="Logo PT ENTER" />
+            <div>
+                <div class="company-name">PT ENTER</div>
+                <div class="tagline">Solusi Layanan IT Profesional</div>
+            </div>
+        </div>
+        <nav>
+            <a href="Index.html">Beranda</a>
+            <a href="history.html">Sejarah</a>
+            <a href="jasa.html">Produk & Jasa</a>
+            <a href="contact_us.html">Hubungi Kami</a>
+            <a href="experience.html">Pengalaman</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-image"><img src="icon.png" alt="Layanan IT"></div>
+        <div class="hero-text">
+            <h1>PT ENTER</h1>
+            <h2>Transformasi Digital & Dukungan IT yang Andal</h2>
+            <p>Kami membantu pelaku usaha — dari UMKM hingga korporasi — mengadopsi teknologi yang tepat untuk mencapai efisiensi operasional, keamanan data, dan pengalaman pelanggan yang lebih baik. Layanan kami mencakup infrastruktur jaringan, aplikasi web, sistem kasir, otomasi IoT, dan dukungan teknis onsite maupun remote.</p>
+            <a class="btn-primary" href="jasa.html">Lihat Produk & Jasa</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <h2 style="color:#08345a;">Mengapa Memilih PT ENTER?</h2>
+            <div style="color:#666;font-weight:600;">Pengalaman • Keamanan • Dukungan 24/7</div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h3>Pengalaman Terbukti</h3>
+                <p>Kami telah menyelesaikan proyek infrastruktur dan aplikasi untuk klien di sektor ritel, pendidikan, dan usaha kecil. Pendekatan kami berfokus pada hasil bisnis.</p>
+            </div>
+            <div class="card">
+                <h3>Keamanan & Kepatuhan</h3>
+                <p>Instalasi mengikuti standar keamanan terbaik untuk menjaga kerahasiaan dan stabilitas sistem Anda.</p>
+            </div>
+            <div class="card">
+                <h3>Dukungan Profesional</h3>
+                <p>Dukungan maintenance berkala, layanan darurat, dan monitoring sistem untuk meminimalkan downtime.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 style="color:#08345a;margin-bottom:8px;">Layanan Unggulan</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Instalasi & Perancangan Jaringan</h3>
+                <p>LAN/WiFi yang scalable dan aman, termasuk konfigurasi firewall & server.</p>
+            </div>
+            <div class="card">
+                <h3>Pembuatan Website & Aplikasi</h3>
+                <p>Website responsif, portal bisnis, dan aplikasi kustom sesuai kebutuhan Anda.</p>
+            </div>
+            <div class="card">
+                <h3>Sistem Kasir (POS)</h3>
+                <p>Solusi POS lengkap untuk retail & F&B dengan laporan dan manajemen stok.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <h4>Kontak</h4>
+            <p>PT ENTER<br>Jl. Contoh No.123, Jakarta<br>Telp: (021) 555-0123<br>Email: info@ptenter.com</p>
+        </div>
+        <div>
+            <h4>Visi & Misi</h4>
+            <p><strong>Visi:</strong> Menjadi mitra teknologi terpercaya yang mendorong transformasi digital.<br><strong>Misi:</strong> Memberikan solusi IT yang aman dan handal.</p>
+        </div>
+        <div>
+            <h4>Ikuti Kami</h4>
+            <p>Facebook | Instagram | LinkedIn</p>
+        </div>
+    </footer>
+</body>
+</html>
